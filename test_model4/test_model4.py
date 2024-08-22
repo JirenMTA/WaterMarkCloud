@@ -9,7 +9,6 @@ import cv2
 import utils
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-
 class SegmentationCloudModel(pl.LightningModule):
 
     def __init__(self, arch, encoder_name, in_channels, out_classes, **kwargs):
@@ -177,9 +176,9 @@ def train_model(arch):
         train_dataloaders=train_loader,
         val_dataloaders=val_loader,
     )
-    torch.save(model.state_dict(), MODEL_PATH)
+    #torch.save(model.state_dict(), MODEL_PATH)
 
 if __name__ == "__main__":
-    #train_model(arch='Unet')
+    train_model(arch='Unet')
     #test_and_show_1_input(arch = 'FPN')
-    write_losses_of_model(arch='Unet')
+    #write_losses_of_model(arch='Unet')

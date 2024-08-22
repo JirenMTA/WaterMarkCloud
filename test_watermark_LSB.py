@@ -1,9 +1,10 @@
-import watermark.watermark as wm
+import watermark.LSB.watermark as wm
 import utils
 import cv2
 import numpy as np
-host_test_path = './image_test_wm/host.jpg'
-watermark_test_path = './image_test_wm/watermark.jpg'
+
+host_test_path = './image_test_wm/LSB/host.jpg'
+watermark_test_path = './image_test_wm/LSB/watermark.jpg'
 MODEL_PATH = './models/pretrained_model2/model'
 
 def visualize_difference(img1, img2):
@@ -25,7 +26,7 @@ def false_approach():
     lst_channel_name = ['red', 'green', 'blue', 'nir']
     channels = []
     for channel in lst_channel_name:
-        channel_path = f'./image_test_wm/host_{channel}.jpg'
+        channel_path = f'./image_test_wm/LSB/host_{channel}.jpg'
         channel_arr = cv2.imread(channel_path, 0)
         channels.append(channel_arr)
 
@@ -43,7 +44,7 @@ def true_approach():
     lst_channel_name = ['red', 'green', 'blue', 'nir']
     channels = []
     for channel in lst_channel_name:
-        channel_path = f'./image_test_wm/host_{channel}.jpg'
+        channel_path = f'./image_test_wm/LSB/host_{channel}.jpg'
         channel_arr = cv2.imread(channel_path, 0)
         channels.append(channel_arr)
 
@@ -52,8 +53,8 @@ def true_approach():
     container, key = wm.watermark_into_cloud(host, merge_channels, watermark)
     extracted = wm.extract_wm_from_cloud(container, key)
 
-    utils.save_img('./image_test_wm/container.png', container)
-    utils.save_img('./image_test_wm/extracted_watermark.png', extracted)
+    utils.save_img('./image_test_wm/LSB/container.png', container)
+    utils.save_img('./image_test_wm/LSB/extracted_watermark.png', extracted)
 
     visualize_difference(host, container)
 

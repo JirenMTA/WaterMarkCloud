@@ -20,9 +20,15 @@ def show_images(imgs, window_title):
     fig = plt.figure(figsize=(8, 4))
     plt.suptitle(window_title, fontsize=16)
     n = len(imgs)
+    cols = 3
+    rows = (n + cols - 1) // cols
+
     for i, (img, title) in enumerate(imgs):
-        ax_img = plt.subplot(n // 2, 2, i+1)
+        ax_img = plt.subplot(rows, cols, i+1)
         show_image_by_ax(ax_img, img, title)
+        ax_img.axis('off')
+
+    plt.subplots_adjust(wspace=0.3, hspace=0.3)
     fig.tight_layout()
     plt.show()
 

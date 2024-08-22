@@ -4,9 +4,12 @@ import numpy as np
 import os
 import torch
 import test_model2.test_model2 as md2
-import utils
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
+
+host_test_path = './image_test_wm/LSB/host.jpg'
+watermark_test_path = './image_test_wm/LSB/watermark.jpg'
+MODEL_PATH = './models/pretrained_model2/model'
 
 def save_key(path, key):
     with open(path, 'wb') as f:
@@ -36,7 +39,7 @@ def extract_watermark(watermarked_image):
     return extracted
 
 def watermark_into_cloud(host_arr, channels, watermark_arr):
-    MODEL_PATH = os.path.join(current_dir, '../models/pretrained_model2/model')
+    MODEL_PATH = os.path.join(current_dir, '../../models/pretrained_model2/model')
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     unet = md2.UNET(4, 2).to(device)
